@@ -45,14 +45,15 @@ def preprocessor_norm(X):
     X : array
         Conjunto de dados pré-processado.
     '''
-    numerical_features = X.select_dtypes(include=['int64', 'float64']).columns.tolist()
+    numerical_features = X.select_dtypes(include=['int64', 'float64', 'int32', 'float64']).columns.tolist()
 
     numeric_transformer = Pipeline(
-    steps=[("imputer", SimpleImputer(strategy="median")), ("scaler", MinMaxScaler())]
+    steps=[("scaler", MinMaxScaler())]
     )
     preprocessor = ColumnTransformer(
     transformers=[("num", numeric_transformer, numerical_features)]
     )
+    
     X = preprocessor.fit_transform(X)
     return X
 
