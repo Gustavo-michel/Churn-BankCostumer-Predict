@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detecção de Fraudes</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Detecção de Fraudes</h1>
+    </header>
+    <form action="/" method="post">
+
+        <label for="CreditScore">Credit score</label>
+        <input type="number" name="CreditScore">
+
+        <label for="Geography">Geography</label>
+        <select name="Geography">
+            <option value="France">France</option>
+            <option value="Germany">Germany</option>
+            <option value="Spain">Spain</option>
+        </select>
+
+        <input type="submit">
+    </form>
+    <h1>
+        {{ result }}
+    </h1>
+</body>
+</html>
