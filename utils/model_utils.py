@@ -30,9 +30,16 @@ parameters = {
     'SVC': {'kernel':('linear', 'rbf'), 'C':[1, 2, 10]}, # SVC
     'Logistic Regression': {'penalty': ('l1','l2', 'elasticnet'), 'C':[1, 2, 10], 'solver':('bfgs', 'liblinear', 'newton-cg', 'newton-cholesky', 'saga')}, # LogisticRegression
     'Random Forest': {'n_estimators': [50, 100, 200], 'criterion': ('gini', 'entropy', 'log_loss')}, # RandomForestClassifier
-    'AdaBoost': {'n_estimators': [25, 50, 100,], 'learning_rate':  [0.01, 0.1, 0.5, 1.0]}, # AdaBoostClassifier
-    'LightGBM': {'n_estimators':  [50, 100, 200], 'boosting_type': ('gbdt', 'dart', 'rf'), 'learning_rate': [0.01, 0.1, 0.5, 1.0]}, # LightGBM
+    'AdaBoost': {'force_col_wise': True, 'n_estimators': [25, 50, 100,], 'learning_rate':  [0.01, 0.1, 0.5, 1.0]}, # AdaBoostClassifier
+    'LightGBM': {'n_estimators':  [50, 100, 200], 'bagging_freq': [1, 2, 5], 'bagging_fraction': [0.5, 0.7, 0.9],
+                 'feature_fraction': [0.5, 0.7, 0.9], 'max_depth': [10, 20, 30], 'learning_rate': [0.01, 0.1, 0.5, 1.0],
+                    #'boosting_type': ('gbdt', 'dart', 'rf'), 
+                    }, # LightGBM
 }
+
+"""
+                                                Classification
+"""
 
 def parameter_model_select(X, y):
     '''
@@ -78,12 +85,12 @@ def parameter_model_select(X, y):
             print("-"*50)
     else:
         print(f"Searching best parameters for {model}...")
-        grid = GridSearchCV(estimator=classifiers[model], param_grid=parameters[model], scoring=scores, refit=False)
+        grid = GridSearchCV(estimator=classifiers[model], param_grid=parameters[model], cv=3, scoring=scores, refit=False)
         grid.fit(X, y)
-        print(f"Best parameters for {model}: {grid.best_params_} with score {grid.best_score_}")
+        # print(f"Best parameters for {model}: {grid.best_params_} with score {grid.best_score_}")
         print("-"*50)
         print(pd.DataFrame(grid.cv_results_)[['params',
-                                'mean_test_accuracy'
+                                'mean_test_accuracy',
                                 'mean_test_recall',
                                 'mean_test_precision',
                                 'mean_test_f1']])
@@ -191,7 +198,9 @@ def evaluate(y_test, predictions):
     print(f"F1 Score test: {f1_score(y_test, predictions):.3f}")
        
 
-# preprocessor functions 
+"""
+                                            Preprocessor functions 
+"""
 
 def scaler_norm(X):
     '''
@@ -263,16 +272,19 @@ def preprocessor_pipeline(X):
     numerical_features = X.select_dtypes(include=['int64', 'float64', 'int32', 'float64']).columns.tolist()
     categorical_features = X.select_dtypes(include=['object']).columns.tolist()
 
-    transformer = ColumnTransformer([
+    categorical_transformer = ColumnTransformer([
         ('label_encoder', LabelEncoder(), categorical_features),
-        ('scaler', StandardScaler(), numerical_features)
+    ])
+
+    numeric_transformer = Pipeline([
+        ("scaler", MinMaxScaler(), numerical_features)
     ])
 
     pipeline = Pipeline([
-        ('preprocessamento', transformer),
+        ('cat_transformer', categorical_transformer),
         ('smote', SMOTE(random_state=42)),
         ('variance_threshold', VarianceThreshold(threshold=0.25)),
-        ('scaler', StandardScaler())
+        ('num_transformer', numeric_transformer),
     ])
     X = pipeline.fit_transform(X)
     return X
