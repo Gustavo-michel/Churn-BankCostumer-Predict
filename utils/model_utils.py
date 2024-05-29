@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 from sklearn.pipeline import Pipeline
+# from imblearn.pipeline import make_pipeline
 from sklearn.metrics import roc_auc_score, roc_curve, log_loss, make_scorer, f1_score, classification_report, confusion_matrix
 from sklearn import metrics
 
@@ -14,8 +15,8 @@ from sklearn.preprocessing import MinMaxScaler, StandardScaler, LabelEncoder
 from sklearn.impute import SimpleImputer
 from sklearn.compose import ColumnTransformer
 from sklearn.model_selection import GridSearchCV
-from imblearn.over_sampling import SMOTE
-from sklearn.feature_selection import VarianceThreshold
+# from imblearn.over_sampling import SMOTE
+# from sklearn.feature_selection import VarianceThreshold
 from lightgbm import LGBMClassifier
 
 classifiers = {
@@ -220,18 +221,19 @@ def scaler_norm(X):
     numerical_features = X.select_dtypes(include=['int64', 'float64', 'int32', 'float64']).columns.tolist()
     categorical_features = X.select_dtypes(include=['object']).columns.tolist()
 
+    categorical_transformer = Pipeline(
+    steps=[("label", LabelEncoder())]
+    )
+
     numeric_transformer = Pipeline(
     steps=[("scaler", MinMaxScaler())]
     )
 
-    categorical_transformer = Pipeline(
-    steps=[("label", LabelEncoder())]
-    )
     preprocessor = ColumnTransformer(
     transformers=[("num", numeric_transformer, numerical_features), ("cat", categorical_transformer, categorical_features)]
     )
-    
-    X = preprocessor.fit_transform(X)
+        
+    X = preprocessor.fit_transform(X, y=0)
     return X
 
 def scaler_std(X):
@@ -282,8 +284,8 @@ def preprocessor_pipeline(X):
 
     pipeline = Pipeline([
         ('cat_transformer', categorical_transformer),
-        ('smote', SMOTE(random_state=42)),
-        ('variance_threshold', VarianceThreshold(threshold=0.25)),
+        # ('smote', SMOTE(random_state=42)),
+        # ('variance_threshold', VarianceThreshold(threshold=0.25)),
         ('num_transformer', numeric_transformer),
     ])
     X = pipeline.fit_transform(X)
