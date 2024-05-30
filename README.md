@@ -21,13 +21,15 @@ Acessar pagina web: ___
 - Detecção dos valores dispersos no DataFrame.
 - Verificação de correlação através da matriz de confusão.
 
-****
+![correlação_colunas](https://github.com/Gustavo-michel/Churn-BankCostumer-Predict/assets/127684360/2fd6abb8-c524-4bec-b371-274824d272b9)
 
 ### Distribuição das Variáveis
 - Análise da distribuição das variáveis independentes.
 - Identificação de variáveis com maior impacto no churn.
 
-****
+![plotboxes0](https://github.com/Gustavo-michel/Churn-BankCostumer-Predict/assets/127684360/c1d41e54-10ef-4fd3-ad85-2c42d4e1e13a)
+
+![plotHist0](https://github.com/Gustavo-michel/Churn-BankCostumer-Predict/assets/127684360/6a89bd79-9482-4452-b351-f1a9f7c38de4)
 
 ### Balanceamento de Classes com SMOTE
 O balanceamento de classes é uma etapa crucial em problemas de classificação, especialmente quando há um desequilíbrio significativo entre as classes, como é comum em problemas de previsão de churn. SMOTE (Synthetic Minority Over-sampling Technique) é uma técnica de oversampling que gera exemplos sintéticos da classe minoritária para igualar a distribuição das classes. Isso ajuda o modelo a aprender com mais eficácia padrões relacionados à classe minoritária, melhorando assim o desempenho da previsão.
@@ -48,7 +50,9 @@ A normalização é uma etapa importante no pré-processamento de dados para gar
 - Avaliação dos modelos utilizando pipelines e técnicas do scikit-learn
 - O modelo escolhido foi LightGBMClassifier.
 
-****
+![Comparando modelos ROC-CURVE](https://github.com/Gustavo-michel/Churn-BankCostumer-Predict/assets/127684360/610b7f3e-9677-43d6-99d8-377030fface6)
+
+![Matriz evaluate](https://github.com/Gustavo-michel/Churn-BankCostumer-Predict/assets/127684360/13f85fcf-f6c2-484e-9123-3eb6b49e334d)
 
 ## Acesso ao Código-Fonte
 O código-fonte está disponível no repositório do GitHub. Para instalar as dependências necessárias, execute o seguinte comando:
