@@ -10,6 +10,7 @@ from sklearn import metrics
 from sklearn.svm import SVC
 from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
 from sklearn.linear_model import LogisticRegression
+from sklearn.preprocessing import FunctionTransformer
 
 from sklearn.preprocessing import MinMaxScaler, StandardScaler, LabelEncoder
 from sklearn.impute import SimpleImputer
@@ -192,6 +193,7 @@ def evaluate(y_test, predictions):
     '''
     confusionMatrix = confusion_matrix(y_test, predictions)
     sns.heatmap(confusionMatrix, cmap="Blues", annot=True)
+    plt.savefig("img/Matriz evaluate")
     plt.title("Matriz de confusão")
     print("-"*50)
     print(classification_report(y_test, predictions))
@@ -221,8 +223,14 @@ def scaler_norm(X):
     numerical_features = X.select_dtypes(include=['int64', 'float64', 'int32', 'float64']).columns.tolist()
     categorical_features = X.select_dtypes(include=['object']).columns.tolist()
 
+    def label_encode(df):
+        for col in categorical_features:
+            df[col] = LabelEncoder().fit_transform(df[col])
+        return df
+    
     categorical_transformer = Pipeline(
-    steps=[("label", LabelEncoder())]
+    steps=[
+        ("label_encode", FunctionTransformer(label_encode, validate=False)),]
     )
 
     numeric_transformer = Pipeline(
@@ -233,7 +241,7 @@ def scaler_norm(X):
     transformers=[("num", numeric_transformer, numerical_features), ("cat", categorical_transformer, categorical_features)]
     )
         
-    X = preprocessor.fit_transform(X, y=0)
+    X = preprocessor.fit_transform(X)
     return X
 
 def scaler_std(X):
