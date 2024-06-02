@@ -34,7 +34,7 @@ parameters = {
     'Random Forest': {'n_estimators': [50, 100, 200], 'criterion': ('gini', 'entropy', 'log_loss')}, # RandomForestClassifier
     'AdaBoost': {'force_col_wise': True, 'n_estimators': [25, 50, 100,], 'learning_rate':  [0.01, 0.1, 0.5, 1.0]}, # AdaBoostClassifier
     'LightGBM': {'n_estimators':  [50, 100, 200], 'bagging_freq': [1, 2, 5], 'bagging_fraction': [0.5, 0.7, 0.9],
-                 'feature_fraction': [0.5, 0.7, 0.9], 'max_depth': [10, 20, 30], 'learning_rate': [0.01, 0.1, 0.5, 1.0],
+                'feature_fraction': [0.5, 0.7, 0.9], 'max_depth': [10, 20, 30], 'learning_rate': [0.01, 0.1, 0.5, 1.0],
                     #'boosting_type': ('gbdt', 'dart', 'rf'), 
                     }, # LightGBM
 }
@@ -199,7 +199,6 @@ def evaluate(y_test, predictions):
     print(classification_report(y_test, predictions))
     print("-"*50)
     print(f"F1 Score test: {f1_score(y_test, predictions):.3f}")
-       
 
 """
                                             Preprocessor functions 
@@ -240,7 +239,7 @@ def scaler_norm(X):
     preprocessor = ColumnTransformer(
     transformers=[("num", numeric_transformer, numerical_features), ("cat", categorical_transformer, categorical_features)]
     )
-        
+    
     X = preprocessor.fit_transform(X)
     return X
 

@@ -8,7 +8,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
 from utils.model_utils import *
 
 app = Flask(__name__)
-model = joblib.load('notebooks/model/churn_detection_clf.sav')
+model = joblib.load('model/churn_detection_clf.sav')
 
 @app.route("/", methods=['POST'])
 def form():
@@ -33,10 +33,10 @@ def form():
         X = scaler_norm(X)
         
         prediction = model.predict(X)
-        prediction = 'Fraude' if prediction[0] == 1 else 'Não Fraude'
+        prediction = 'Ativo' if prediction[0] == 1 else 'Cancelado'
         return render_template('form.html', result=prediction)
     return render_template('form.html', result='')
 
 
 if __name__ in '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000)

@@ -28,7 +28,7 @@ Acessar pagina web: ___
 - Identificação de variáveis com maior impacto no churn.
 
 ![plotboxes0](https://github.com/Gustavo-michel/Churn-BankCostumer-Predict/assets/127684360/c1d41e54-10ef-4fd3-ad85-2c42d4e1e13a)
-
+******
 ![plotHist0](https://github.com/Gustavo-michel/Churn-BankCostumer-Predict/assets/127684360/6a89bd79-9482-4452-b351-f1a9f7c38de4)
 
 ### Balanceamento de Classes com SMOTE
@@ -48,7 +48,7 @@ A normalização é uma etapa importante no pré-processamento de dados para gar
 - Separação dos dados em conjunto de treino e teste.
 - Treino e teste do modelo.
 - Avaliação dos modelos utilizando pipelines e técnicas do scikit-learn
-- O modelo escolhido foi LightGBMClassifier.
+- O modelo escolhido foi LightGBMClassifier 99% de eficácia.
 
 ![Comparando modelos ROC-CURVE](https://github.com/Gustavo-michel/Churn-BankCostumer-Predict/assets/127684360/610b7f3e-9677-43d6-99d8-377030fface6)
 
