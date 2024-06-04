@@ -10,7 +10,7 @@ from utils.model_utils import *
 app = Flask(__name__)
 model = joblib.load('model/churn_detection_clf.sav')
 
-@app.route("/", methods=['POST'])
+@app.route("/", methods=['GET', 'POST'])
 def form():
     if request.method == 'POST':
         data = {
@@ -39,4 +39,4 @@ def form():
 
 
 if __name__ in '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(debug=True)
