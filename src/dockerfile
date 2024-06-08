@@ -8,6 +8,8 @@ apt-get install -y libgomp1 && \
 pip install --no-cache-dir -r requirements.txt && \
 apt-get clean
 
+EXPOSE 5000
+
 COPY . .
 
 CMD ["python", "api/app.py"]

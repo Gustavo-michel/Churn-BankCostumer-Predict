@@ -28,7 +28,7 @@ def form():
             'Geography': request.form.get('Geography', type=str),
             'Card_Type': request.form.get('Card_Type', type=str),
         }
-
+        
         X = pd.DataFrame([data])
         X = scaler_norm(X)
         
@@ -39,4 +39,4 @@ def form():
 
 
 if __name__ in '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000)
