@@ -1,14 +1,14 @@
 from flask import Flask, render_template,request
-import joblib
-# import pickle
+# import joblib
+import pickle
 import pandas as pd
 import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
 from utils.model_utils import *
 
-app = Flask(__name__)
-model = joblib.load('model/churn_detection_clf.sav')
+app = Flask(__name__, template_folder='templates')
+model = pickle.load(open('model/churn_detection_clf.sav', 'rb'))
 
 @app.route("/", methods=['GET', 'POST'])
 def form():
