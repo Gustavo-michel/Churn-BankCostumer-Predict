@@ -6,10 +6,10 @@
         "use": "@vercel/docker"
     }
     ],
-    "routes": [
+    "rewrites": [
     {
         "src": "/(.*)",
-        "dest": "/"
+        "dest": "/api/app"
     }
     ]
 }
