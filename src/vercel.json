@@ -9,7 +9,7 @@
     "rewrites": [
     {
         "src": "/(.*)",
-        "dest": "/api/app"
+        "dest": "/"
     }
     ]
 }
