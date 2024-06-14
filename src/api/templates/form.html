@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detecção de Fraudes</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Detecção de Fraudes</h1>
+    </header>
+    <form action="/" method="post">
+        <label for="CreditScore">Credit score(Pontuação de credito)</label>
+        <input type="number" name="CreditScore">
+
+        <label for="Tenure">Tenure(tempo de posse)</label>
+        <input type="number" id="Tenure" name="Tenure">
+
+        <label for="Age">Age(idade)</label>
+        <input type="number" id="Age" name="Age">
+
+        <label for="Balance">Balance(saldo)</label>
+        <input type="number" id="Balance" name="Balance" step="0.01">
+
+        <label for="NumOfProducts">Num Of Products(numero de produtos)</label>
+        <input type="number" id="NumOfProducts" name="NumOfProducts">
+
+        <label for="HasCrCard">Has Credit Card(Tem Cartão de credito)</label>
+        <input type="checkbox" id="HasCrCard" name="HasCrCard">
+
+        <label for="IsActiveMember">Is Active Member(é um membro ativo)</label>
+        <input type="checkbox" id="IsActiveMember" name="IsActiveMember">
+
+        <label for="EstimatedSalary">EstimatedSalary(salario estimado)</label>
+        <input type="number" id="EstimatedSalary" name="EstimatedSalary" step="0.01">
+
+        <label for="Complain">Complain(reclamações)</label>
+        <input type="checkbox" id="Complain" name="Complain">
+
+        <label for="Satisfaction_Score">Satisfaction Score(Pontuação de satisfação)</label>
+        <input type="number" id="Satisfaction_Score" name="Satisfaction_Score" max="5">
+
+        <label for="Point_Earned">Point Earned(pontos ganhos)</label>
+        <input type="number" id="Point_Earned" name="Point_Earned" max="100">
+
+        <label for="Geography">Geography/country(Geografia/país)</label>
+        <select name="Geography" required>
+            <option value="">None</option>
+            <option value="France">France</option>
+            <option value="Germany">Germany</option>
+            <option value="Spain">Spain</option>
+        </select>
+
+        <label for="Card_Type">Card_Type(Tipo de cartão)</label>
+        <select name="Card_Type" required>
+            <option value="">None</option>
+            <option value="SILVER">SILVER</option>
+            <option value="GOLD">GOLD</option>
+            <option value="DIAMOND">DIAMOND</option>
+            <option value="PLATINUM">PLATINUM</option>
+        </select>
+
+        <button type="submit" name="submit" class="submit">Enviar</button>    
+    </form>
+    <h1 class="prediction">
+        {{ result }}
+    </h1>
+</body>
+</html>
