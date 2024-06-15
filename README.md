@@ -98,6 +98,12 @@ Para executar o projeto na sua própria máquina, siga os passos abaixo:
     ```bash
     python src/app.py
     ```
+### Container docker
+```
+docker push gustavomichelads/dockerhub:churn-app
+
+docker run -p 5000:5000 gustavomichelads/dockerhub:churn-app
+```
 
 ## Contato
 Telefone: +55 (11) 99434-5046  
