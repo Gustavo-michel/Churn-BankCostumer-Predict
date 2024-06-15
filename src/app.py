@@ -2,8 +2,6 @@ from flask import Flask, render_template,request
 # import joblib
 import pickle
 import pandas as pd
-import sys
-
 import os
 from utils.model_utils import *
 
