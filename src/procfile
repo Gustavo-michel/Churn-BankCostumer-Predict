@@ -1,0 +1,1 @@
+web: gunicorn --bind :$5000 churn-app:churn-app
