@@ -4,6 +4,7 @@ import pickle
 import pandas as pd
 import os
 from utils.model_utils import *
+# from waitress import serve
 
 app = Flask(__name__, template_folder='templates')
 model = pickle.load(open('model/churn_detection_clf.sav', 'rb'))
@@ -37,4 +38,5 @@ def form():
 
 
 if __name__ in '__main__':
-    app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))
+    # serve(app, host='0.0.0.0', port=int(os.environ.get("PORT", 10000)))
+    app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 10000)))
