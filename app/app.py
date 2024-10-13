@@ -1,10 +1,8 @@
 from flask import Flask, render_template,request
-# import joblib
 import pickle
 import pandas as pd
 import os
 from utils.model_utils import scaler_norm
-# from waitress import serve
 
 app = Flask(__name__, template_folder='templates')
 model = pickle.load(open('model/churn_detection_clf.sav', 'rb'))
