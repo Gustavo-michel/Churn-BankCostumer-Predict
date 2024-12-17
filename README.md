@@ -7,7 +7,7 @@ Dataset: https://www.kaggle.com/datasets/radheshyamkollipara/bank-customer-churn
 ## Sobre
 Este projeto visa desenvolver um sistema de previsão de churn utilizando técnicas de análise exploratória de dados e machine learning. O dataset utilizado neste projeto contém informações de clientes, onde cada observação é rotulada como churn ou não churn. As variáveis presentes no dataset incluem características demográficas, comportamentais e de transações, e herarquia dos clientes.
 
-Acessar pagina web: [churnbankpredict.onrender.com](https://churnapp-production.up.railway.app/)
+Acessar pagina web: [churnapp-production.up.railway.app](https://churnapp-production.up.railway.app/)
 
 ## Análise dos Dados
 
